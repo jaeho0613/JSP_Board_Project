@@ -16,11 +16,19 @@
         <tr>
             <th>번호</th>
             <th>제목</th>
-            <th>시작일</th>
-            <th>종료일</th>
-            <th>상태일</th>
-            <th></th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
         </tr>
+        <c:forEach var="board" items="${ boardList }">
+            <tr>
+                <td>${ board.bdNum}</td>
+                <td>${ board.bdTitle}</td>
+                <td>${ board.bdAuthor}</td>
+                <td>${ board.bdCreateDate}</td>
+                <td>${ board.bdViews}</td>
+            </tr>
+        </c:forEach>
     </table>
 </body>
 
