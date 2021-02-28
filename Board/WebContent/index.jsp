@@ -20,15 +20,22 @@
             <th>작성일</th>
             <th>조회수</th>
         </tr>
+        
+        <!-- 출력 될 게시판 -->
         <c:forEach var="board" items="${ boardList }">
             <tr>
-                <td>${ board.bdNum}</td>
-                <td>${ board.bdTitle}</td>
-                <td>${ board.bdAuthor}</td>
-                <td>${ board.bdCreateDate}</td>
-                <td>${ board.bdViews}</td>
+                <td>${ board.bdNum }</td>
+                <td>${ board.bdTitle }</td>
+                <td>${ board.bdAuthor }</td>
+                <td>${ board.bdCreateDate }</td>
+                <td>${ board.bdViews }</td>
             </tr>
         </c:forEach>
+        <td colspan="5" align="center">
+        	<c:forEach var="num" begin="${ paging.startPage }" end="${ paging.endPage }" >
+        		<a href="indexController?no=${ num }"> [${ num }]</a>
+        	</c:forEach>
+        </td>
     </table>
 </body>
 

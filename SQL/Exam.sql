@@ -18,6 +18,9 @@ create table Board(
     bdViews integer    
 );
 
+insert into board values (null, "게시글 쓰기", "정재호", now(), null);
+select count(*) from board;
+
 delimiter $$
 drop procedure if exists loopinsert $$
 create procedure loopinsert()
@@ -48,4 +51,4 @@ set i = i + 20;
 end while;
 end $$
 
--- call loopinsert();
+call loopinsert();
