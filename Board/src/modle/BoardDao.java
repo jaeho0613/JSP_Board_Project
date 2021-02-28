@@ -99,7 +99,7 @@ public class BoardDAO {
 		return -1; // 데이터베이스 오류!
 	}
 
-	// 전체 리스트 수 가져오기
+	// 특정 영역 리스트 가져오기
 	public ArrayList<BoardDTO> getSelectBoardList(int startRow, int endRow) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -150,5 +150,47 @@ public class BoardDAO {
 		}
 		
 		return null; // Error Code 
+	}
+
+	// 전체 리스트 크기 가져오기
+	public int getListCount() {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DatabaseUtil.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("select count(*) from board");
+			rs.next();
+			
+			int count = rs.getInt(1);
+			
+			return count; // 총 DB List 갯수
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e2) {
+			}
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+			}
+		}
+		
+		return -1; // Error Code 
 	}
 }

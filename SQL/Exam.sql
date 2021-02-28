@@ -18,15 +18,14 @@ create table Board(
     bdViews integer    
 );
 
-insert into board values (null, "게시글 쓰기", "정재호", now(), null);
-select count(*) from board;
+insert into board values (null, '게시글 쓰기 초기값', "정재호", now(), null);
 
 delimiter $$
 drop procedure if exists loopinsert $$
 create procedure loopinsert()
 begin
 declare i int default 1;
-while(i <1000000) do
+while(i < 100) do
 insert into board (bdNum, bdTitle, bdAuthor, bdCreateDate, bdViews) values (null, concat('게시글 쓰기 ', i), "정재호", now(), null),
 																		   (null, concat('게시글 쓰기 ', i + 1), "정재호", now(), null),
                                                                            (null, concat('게시글 쓰기 ', i + 2), "정재호", now(), null),

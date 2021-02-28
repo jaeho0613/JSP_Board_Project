@@ -15,11 +15,13 @@ public class Paging {
 	// 하단 페이지 링크 시작 번호 및 끝 번호
 	int startRow = 0;
 	int endRow = 0;
+	int totalRow = 0;
 
 	// 생성자 : 초기 셋팅
-	public Paging(String pageNum) {
+	public Paging(String pageNum, int pageCount) {
 
 		this.pageNum = pageNum;
+		this.pageCount = pageCount;
 
 		if (this.pageNum == null) {
 			pageNum = "1";
@@ -29,25 +31,23 @@ public class Paging {
 
 		startRow = (currentPage - 1) * pageSize + 1;
 		endRow = currentPage * pageSize;
-		
+
 		startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
 		endPage = startPage + pageBlock - 1;
+
+		if (pageCount % pageSize > 0) {
+			totalRow = (pageCount / pageSize) + 1;
+		} else {
+			totalRow = (pageCount / pageSize);
+		}
 	}
 
-	public int getStartPage() {
-		return startPage;
+	public int getTotalRow() {
+		return totalRow;
 	}
 
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
-
-	public int getEndPage() {
-		return endPage;
-	}
-
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
+	public void setTotalRow(int totalRow) {
+		this.totalRow = totalRow;
 	}
 
 	public int getPageCount() {
@@ -88,6 +88,22 @@ public class Paging {
 
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
+	}
+
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
 	}
 
 	public int getStartRow() {
