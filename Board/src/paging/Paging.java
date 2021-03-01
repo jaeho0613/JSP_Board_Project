@@ -3,7 +3,7 @@ package paging;
 public class Paging {
 	int pageCount = 0; // 총 페이지 수
 	int pageBlock = 10; // 한 페이지에 보여줄 페이지 블럭 수
-	int pageSize = 10;
+	int pageSize = 10;  // 한 블럭에 보여줄 리스트 갯수
 
 	String pageNum = null; // Null값을 검사하기 위한 pageNum
 	int currentPage = 0; // 검사된 페이지 값을 계산하기 위한 int pageNum

@@ -1,5 +1,6 @@
 package modle;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -192,5 +193,30 @@ public class BoardDAO {
 		}
 		
 		return -1; // Error Code 
+	}
+
+	// Procedure 함수 호출 - 루프
+	public void loopInsert(int count) {
+		Connection conn = null;
+		CallableStatement stmt = null;
+		
+		try {
+			System.out.println("Loop 실행");
+			conn = DatabaseUtil.getConnection();
+			stmt = conn.prepareCall("call loopInsert(?)");
+			stmt.setInt(1, count);
+			stmt.execute();
+		} catch (Exception e) {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {}
+		}
 	}
 }

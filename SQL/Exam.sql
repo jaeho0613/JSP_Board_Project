@@ -4,10 +4,10 @@ create database Exam;
 use Exam;
 
 create table User(
-	userID integer primary key,
+	userID varchar(20) primary key,
 	userName varchar(20) not null,
-    userPassoword varchar(20) not null,
-    userPasswordHasah varchar(64) not null
+    userPassword varchar(20) not null,
+    userPasswordHash varchar(64) not null
 );
 
 create table Board(
@@ -18,14 +18,12 @@ create table Board(
     bdViews integer    
 );
 
-insert into board values (null, '게시글 쓰기 초기값', "정재호", now(), null);
-
 delimiter $$
-drop procedure if exists loopinsert $$
-create procedure loopinsert()
+drop procedure if exists loopInsert $$
+create procedure loopInsert(in count integer)
 begin
 declare i int default 1;
-while(i < 100) do
+while(i < count) do
 insert into board (bdNum, bdTitle, bdAuthor, bdCreateDate, bdViews) values (null, concat('게시글 쓰기 ', i), "정재호", now(), null),
 																		   (null, concat('게시글 쓰기 ', i + 1), "정재호", now(), null),
                                                                            (null, concat('게시글 쓰기 ', i + 2), "정재호", now(), null),
@@ -50,4 +48,4 @@ set i = i + 20;
 end while;
 end $$
 
-call loopinsert();
+call loopInsert(400);

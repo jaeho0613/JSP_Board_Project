@@ -28,6 +28,7 @@ public class IndexController extends HttpServlet {
 			}
 			
 			BoardDAO boardDao = new BoardDAO();
+			// boardDao.loopInsert(40);
 			
 			int pageCount = boardDao.getListCount();
 			Paging paging = new Paging(num, pageCount);
