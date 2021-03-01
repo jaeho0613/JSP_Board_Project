@@ -15,6 +15,9 @@ import modle.UserDAO;
 import modle.UserDTO;
 import util.SHA256;
 
+/*
+ * 로그인 컨트롤러
+ */
 @WebServlet("/controller/login")
 public class LogInController extends HttpServlet {
 
@@ -28,18 +31,27 @@ public class LogInController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
+			
+			// 파라미터로 넘어온 userPassword 저장
 			String password = req.getParameter("userPassword");
+			
+			// SHA256로 암호화
 			password = SHA256.getSHA256(password);
 			
 			UserDAO userDao = new UserDAO();
+			
+			// userID와 암호화 된 password로 로그인 정보 확인 
 			UserDTO userDTO = userDao.exist(req.getParameter("userID"), password);
 
+			// 넘어온 데이터가 있다면 로그인 성공
 			if (userDTO != null) {
 				HttpSession session = req.getSession();
+				
+				// 저장소에 저장 
 				session.setAttribute("userDTO", userDTO);
 
 				resp.sendRedirect("../controller/indexController");
-			} else {
+			} else { // 넘어온 데이터가 없다면 로그인 실패
 				RequestDispatcher rd = req.getRequestDispatcher("/auth/LogInFail.jsp");
 				rd.forward(req, resp);
 			}

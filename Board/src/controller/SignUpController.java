@@ -12,6 +12,9 @@ import modle.UserDAO;
 import modle.UserDTO;
 import util.SHA256;
 
+/*
+ * 회원가입 컨트롤러
+ */
 @WebServlet("/controller/signUp")
 public class SignUpController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

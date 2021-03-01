@@ -20,7 +20,7 @@
 	<table border="1">
 		<tr>
 			<td colspan="5" align="left">
-				1-${ paging.pageSize } [${ paging.currentPage }/${ paging.pageCount }]
+				1-${ paging.pageSize } [${ paging.currentPage }/${ paging.totalRow }]
 			</td>
 		</tr>
 		

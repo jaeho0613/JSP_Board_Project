@@ -20,10 +20,10 @@ create table Board(
 
 delimiter $$
 drop procedure if exists loopInsert $$
-create procedure loopInsert(in count integer)
+create procedure loopInsert()
 begin
 declare i int default 1;
-while(i < count) do
+while(i < 1000000) do
 insert into board (bdNum, bdTitle, bdAuthor, bdCreateDate, bdViews) values (null, concat('게시글 쓰기 ', i), "정재호", now(), null),
 																		   (null, concat('게시글 쓰기 ', i + 1), "정재호", now(), null),
                                                                            (null, concat('게시글 쓰기 ', i + 2), "정재호", now(), null),
@@ -48,4 +48,4 @@ set i = i + 20;
 end while;
 end $$
 
-call loopInsert(400);
+call loopInsert();
